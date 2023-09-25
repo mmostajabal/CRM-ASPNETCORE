@@ -1,0 +1,62 @@
+﻿@using CRMAPP.DataAccess.Contracts.Language;
+@model IList<SelectListItem>
+@inject ILanguage Language
+@{
+    ViewData["Title"] = @Language.TranslateSrv("callsManagement");
+}
+@Html.AntiForgeryToken()
+<div class="card">
+    <div class="card-header">
+        @Language.TranslateSrv("callsManagement")
+    </div>
+    <!--Modal-->
+    <div class="modal fade" id="CallsModal" tabindex="-1" role="dialog" aria-labelledby="CallsModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="m-1">
+            <button class="btn btn-primary circle-button" id="createBtn" onclick="createBtn_click(0);" title="Register Call">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group mb-2">
+                    <label> @Language.TranslateSrv("customer") </label>
+                    <select class="form-select" asp-items="@Model" id="CustomerList" name="CustomerList" onchange="LoadCallDataTable()">
+                        <option disabled selected>Select Category</option>
+                    </select>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <table border="1" id="callTable" class="table display responsive nowrap table-striped table-bordered" width="100%">
+                    <thead>
+                        <tr class="HT">
+                            <th>@Language.TranslateSrv("action")</th>
+                            <th>@Language.TranslateSrv("subject")</th>
+                            <th>@Language.TranslateSrv("description")</th>
+                            <th>@Language.TranslateSrv("callDate")</th>
+                            <th>@Language.TranslateSrv("callTime")</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+</div>
+@section Scripts{
+    <script>
+        var titleUpdatebtn = `@Language.TranslateSrv("updateCall")`;
+        var titleDeletebtn = `@Language.TranslateSrv("deleteCall")`;
+    </script>
+    <script src="~/js/Call.js"></script>
+}

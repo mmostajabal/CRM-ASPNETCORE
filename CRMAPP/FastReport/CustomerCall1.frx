@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="09/24/2023 22:21:54" ReportInfo.Modified="09/24/2023 23:45:10" ReportInfo.CreatorVersion="2023.3.0.0">
+  <Dictionary>
+    <BusinessObjectDataSource Name="CustomerCall" ReferenceName="CustomerCallRef" DataType="null" Enabled="True">
+      <Column Name="CustomerNo" DataType="System.String"/>
+      <Column Name="CustomerName" DataType="System.String"/>
+      <Column Name="CustomerSurName" DataType="System.String"/>
+      <Column Name="Address" DataType="System.String"/>
+      <Column Name="PostCode" DataType="System.String"/>
+      <Column Name="Country" DataType="System.String"/>
+      <Column Name="DateOfBirth" DataType="System.DateTime"/>
+      <Column Name="CallDate" DataType="System.DateTime"/>
+      <Column Name="CallTime" DataType="System.TimeSpan"/>
+      <Column Name="Subject" DataType="System.String"/>
+      <Column Name="Description" DataType="System.String"/>
+      <Column Name="Status" DataType="System.Int16"/>
+      <Column Name="StatusDesc" DataType="System.String"/>
+    </BusinessObjectDataSource>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="37.8">
+      <TextObject Name="Text19" Left="9.45" Top="9.45" Width="699.3" Height="18.9" Text="CRM " HorzAlign="Center" Font="Arial, 16pt, style=Bold"/>
+    </ReportTitleBand>
+    <GroupHeaderBand Name="GroupHeader1" Top="41.8" Width="718.2" Height="182.55" Border.Lines="Bottom" Condition="[vCustomerCall.CustomerNo]">
+      <TextObject Name="Text1" Left="113.4" Top="9.45" Width="132.3" Height="18.9" Text="[vCustomerCall.CustomerNo]" Font="Arial, 10pt"/>
+      <TextObject Name="Text2" Left="9.45" Top="9.45" Width="94.5" Height="18.9" Text="Customer NO" Font="Arial, 10pt"/>
+      <TextObject Name="Text3" Left="9.45" Top="48.25" Width="94.5" Height="18.9" Text="First Name" Font="Arial, 10pt"/>
+      <TextObject Name="Text4" Left="113.4" Top="47.25" Width="151.2" Height="18.9" Text="[vCustomerCall.CustomerName]" Font="Arial, 10pt"/>
+      <TextObject Name="Text5" Left="302.4" Top="47.25" Width="94.5" Height="18.9" Text="Last Name" Font="Arial, 10pt"/>
+      <TextObject Name="Text6" Left="415.8" Top="47.25" Width="292.95" Height="18.9" Text="[vCustomerCall.CustomerSurName]" Font="Arial, 10pt"/>
+      <TextObject Name="Text7" Left="9.45" Top="75.6" Width="94.5" Height="18.9" Text="Address" Font="Arial, 10pt"/>
+      <TextObject Name="Text8" Left="113.4" Top="75.6" Width="595.35" Height="18.9" Text="[vCustomerCall.Address]" Font="Arial, 10pt"/>
+      <TextObject Name="Text9" Left="9.45" Top="113.4" Width="94.5" Height="18.9" Text="Country" Font="Arial, 10pt"/>
+      <TextObject Name="Text10" Left="113.4" Top="113.4" Width="151.2" Height="18.9" Text="[vCustomerCall.Country]" Font="Arial, 10pt"/>
+      <TextObject Name="Text11" Left="302.4" Top="113.4" Width="94.5" Height="18.9" Text="Post Code" Font="Arial, 10pt"/>
+      <TextObject Name="Text12" Left="415.8" Top="113.4" Width="113.4" Height="18.9" Text="[vCustomerCall.PostCode]" Font="Arial, 10pt"/>
+      <TextObject Name="Text13" Left="538.65" Top="113.4" Width="66.15" Height="18.9" Text="BirthDate" Font="Arial, 10pt"/>
+      <TextObject Name="Text14" Left="614.25" Top="113.4" Width="94.5" Height="18.9" Text="[vCustomerCall.DateOfBirth]" Format="Date" Format.Format="d" Font="Arial, 10pt"/>
+      <TextObject Name="Text20" Left="9.45" Top="161.65" Width="151.2" Height="18.9" Text="Subject" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text21" Left="189" Top="161.2" Width="302.4" Height="18.9" Text="Description" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text22" Left="500.85" Top="161.2" Width="103.95" Height="18.9" Text="Call Date" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text23" Left="614.25" Top="163.65" Width="94.5" Height="18.9" Text="Call Time" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <DataBand Name="Data1" Top="228.35" Width="718.2" Height="56.7" Border.Lines="Bottom" DataSource="vCustomerCall">
+        <TextObject Name="Text15" Left="9.45" Top="18.9" Width="170.1" Height="18.9" Text="[vCustomerCall.Subject]" Font="Arial, 10pt"/>
+        <TextObject Name="Text16" Left="185.2" Top="18.9" Width="302.4" Height="18.9" Text="[vCustomerCall.Description]" Font="Arial, 10pt"/>
+        <TextObject Name="Text17" Left="500.85" Top="18.9" Width="103.95" Height="18.9" Text="[vCustomerCall.CallDate]" Format="Date" Format.Format="d" HorzAlign="Center" Font="Arial, 10pt"/>
+        <TextObject Name="Text18" Left="614.25" Top="18.9" Width="94.5" Height="18.9" Text="[vCustomerCall.CallTime]" HorzAlign="Center" Font="Arial, 10pt"/>
+      </DataBand>
+      <GroupFooterBand Name="GroupFooter1" Top="289.05" Width="718.2" Height="18.9"/>
+    </GroupHeaderBand>
+    <PageFooterBand Name="PageFooter1" Top="311.95" Width="718.2" Height="28.35">
+      <TextObject Name="Text24" Left="623.7" Top="9.45" Width="94.5" Height="18.9" Border.Lines="Bottom" Text="[PageN]" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

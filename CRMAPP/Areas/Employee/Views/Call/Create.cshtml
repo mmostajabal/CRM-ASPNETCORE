@@ -1,0 +1,78 @@
+﻿@using CRMAPP.DataAccess.Contracts.Language;
+@model CallVM
+@inject ILanguage Language
+@{
+    ViewData["Title"] = (Model.Id == 0 ? Language.TranslateSrv("create") : Language.TranslateSrv("update")) + Language.TranslateSrv("calls");
+}
+<div class="card">
+    <div class="card-header modal-header">
+
+        @(Model.Id == 0 ? @Language.TranslateSrv("register") : @Language.TranslateSrv("update")) @Language.TranslateSrv("calls")
+
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+
+    </div>
+    <div class="card-body">
+
+        <form asp-action="Create" method="post" id="callForm">
+            
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="Id" hidden />
+            <input asp-for="CustomerNo" class="form-control" hidden />
+            <div class="form-group mt-2">
+                <label asp-for="Subject"></label>
+                <input asp-for="Subject" class="form-control" />
+                <span asp-validation-for="Subject" class="text-danger"></span>
+            </div>
+
+            <div class="row mt-2">
+                <div class="form-group col-md-6">
+                    <label asp-for="CallDate"></label>
+                    <input asp-for="CallDate" class="form-control" type="date" value='@(Model.CallDate.ToString("yyyy-MM-dd") == "0001-01-01" ? DateTime.Now.ToString("yyyy-MM-dd") : Model.CallDate.ToString("yyyy-MM-dd"))' max="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                    <span asp-validation-for="CallDate" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label asp-for="CallTime"></label>
+                    <input asp-for="CallTime" class="form-control" type="time" value='@(Model.Id == 0 ? DateTime.Now.ToString("HH:mm") : Model.CallTime.ToString("HH:mm"))' />
+                    <span asp-validation-for="CallTime" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group mt-2">
+                <label asp-for="Description"></label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+
+
+
+            <div class="form-group OpertionalBtn">
+                @if (Model.Id == 0)
+                {
+                    <button type="submit" class="btn btn-primary mt-2" asp-area="Employee" asp-controller="Call" asp-action="Create"><i class='fas fa-plus'></i> @Language.TranslateSrv("create")</button>
+                }
+                else
+                {
+
+                    <button type="submit" class="btn btn-primary mt-2" asp-area="Employee" asp-controller="Call" asp-action="Create"><i class='fas fa-edit'></i> @Language.TranslateSrv("update")</button>
+                }
+
+                <!--a class="btn btn-primary" asp-area="Admin" asp-action="Index" asp-controller="Customer"><i class="fas fa-arrow-left"></i> @Language.TranslateSrv("return")</a-->
+                <button type="button" class="btn btn-secondary mt-2" data-bs-dismiss="modal"><i class="fas fa-times"></i> @Language.TranslateSrv("close")</button>
+            </div>
+        </form>
+    </div>
+</div>
+@{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+<script>
+    $(document).ready(function () {
+        $("#CustomerNo").val($("#CustomerList").val());
+    });
+    
+</script>

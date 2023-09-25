@@ -1,0 +1,56 @@
+﻿@using CRMAPP.DataAccess.Contracts.Language;
+@inject ILanguage Language
+@{
+    ViewData["Title"] = Language.TranslateSrv("customers");
+}
+@Html.AntiForgeryToken()
+<div class="card">
+    <div class="card-header">
+        @Language.TranslateSrv("customers")
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="CustomerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="m-1" >
+            <button class="btn btn-primary circle-button" onclick="createBtn_click('');" title='@Language.TranslateSrv("registerCustomer")'>
+                <i class="fas fa-plus"></i> 
+            </button>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <table border="1" id="customerTable" class="table display responsive nowrap table-striped table-bordered" width="100%">
+                    <thead>
+                        <tr class="HT">
+                            <th>@Language.TranslateSrv("action")</th>
+                            <th>@Language.TranslateSrv("customerNo")</th>
+                            <th>@Language.TranslateSrv("customerName")</th>
+                            <th>@Language.TranslateSrv("customerSurName")</th>
+                            <th>@Language.TranslateSrv("address")</th>
+                            <th>@Language.TranslateSrv("postcode")</th>
+                            <th>@Language.TranslateSrv("country")</th>
+                            <th>@Language.TranslateSrv("dateOfBirth")</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+@section Scripts{
+    <script>
+        var titleUpdatebtn = `@Language.TranslateSrv("updateCustomer")`;
+        var titleDeletebtn = `@Language.TranslateSrv("deleteCustomer")`;
+    </script>
+    <script src="~/js/Customer.js"></script>
+}
+

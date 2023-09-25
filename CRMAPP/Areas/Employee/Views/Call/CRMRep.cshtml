@@ -1,0 +1,21 @@
+﻿@using CRMAPP.DataAccess.Contracts.Language;
+@inject ILanguage Language
+
+<div class="card">
+    <div class="card-header modal-header">
+
+        CRM @Language.TranslateSrv("report")
+
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+
+    </div>
+    <div class="card-body">
+        <div class="form-group OpertionalBtn">
+            <a class="btn btn-primary" asp-area="Employee" asp-controller="Call" asp-action="CallsHTMLRep"><i class="fab fa-html5"></i> HTML @Language.TranslateSrv("report")</a>
+
+            <a type="submit" class="btn btn-primary" asp-area="Employee" asp-controller="Call" asp-action="CallsPDFRep"><i class="fa-regular fa-file-pdf"></i> PDF @Language.TranslateSrv("report")</a>
+        </div>
+    </div>
+</div>

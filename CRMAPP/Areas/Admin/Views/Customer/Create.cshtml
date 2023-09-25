@@ -1,0 +1,79 @@
+﻿@using CRMAPP.DataAccess.Contracts.Language;
+@model CustomerVM
+@inject ILanguage Language
+@{
+    ViewData["Title"] = (string.IsNullOrEmpty(Model.CustomerNo) ? Language.TranslateSrv("create") : Language.TranslateSrv("update")) + Language.TranslateSrv("customer");
+}
+<div class="card">
+    <div class="card-header modal-header">
+
+        @(string.IsNullOrEmpty(Model.CustomerNo) ? @Language.TranslateSrv("create") : @Language.TranslateSrv("update")) @Language.TranslateSrv("customer")      
+
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+
+    </div>
+    <div class="card-body">
+
+        <form asp-action="Create" method="post" id="CustomerForm">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="CustomerNo" hidden/>
+            <div class="form-group mt-2">
+                <label asp-for="CustomerName">@Language.TranslateSrv("customerName")</label>
+                <input asp-for="CustomerName" class="form-control" />
+                <span asp-validation-for="CustomerName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-2">
+                <label asp-for="CustomerSurName">@Language.TranslateSrv("customerSurName")</label>
+                <input asp-for="CustomerSurName" class="form-control" />
+                <span asp-validation-for="CustomerSurName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-2">
+                <label asp-for="Address">@Language.TranslateSrv("address")</label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-2">
+                <label asp-for="PostCode">@Language.TranslateSrv("postcode")</label>
+                <input asp-for="PostCode" class="form-control" />
+                <span asp-validation-for="PostCode" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-2">
+                <label asp-for="Country">@Language.TranslateSrv("country")</label>
+                <input asp-for="Country" class="form-control" />
+                <span asp-validation-for="Country" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-2">
+                <label asp-for="DateOfBirth">@Language.TranslateSrv("dateOfBirth")</label>
+                <input asp-for="DateOfBirth" class="form-control" type="date" max="@DateTime.Now.ToString("yyyy-MM-dd")" value='@(Model.DateOfBirth.ToString("yyyy-MM-dd") == "0001-01-01" ? DateTime.Now.AddYears(-20).ToString("yyyy-MM-dd") : Model.DateOfBirth.ToString("yyyy-MM-dd"))' />
+                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+            </div>
+
+            <!-- Add input fields and labels for other properties as needed -->
+
+            <div class="form-group OpertionalBtn mt-2">
+                @if (string.IsNullOrEmpty(Model.CustomerNo))
+                {
+                    <button type="submit" class="btn btn-primary mt-2" asp-area="Admin" asp-controller="Customer" asp-action="Create"><i class='fas fa-plus'></i> @Language.TranslateSrv("create")</button>
+                }
+                else{
+
+                    <button type="submit" class="btn btn-primary mt-2" asp-area="Admin" asp-controller="Customer" asp-action="Create"><i class='fas fa-edit'></i> @Language.TranslateSrv("update")</button>
+                }
+
+                <!--a class="btn btn-primary" asp-area="Admin" asp-action="Index" asp-controller="Customer"><i class="fas fa-arrow-left"></i> @Language.TranslateSrv("return")</a-->
+                <button type="button" class="btn btn-secondary mt-2" data-bs-dismiss="modal"><i class="fas fa-times"></i> @Language.TranslateSrv("close")</button>
+            </div>
+        </form>
+    </div>
+</div>
+@{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}

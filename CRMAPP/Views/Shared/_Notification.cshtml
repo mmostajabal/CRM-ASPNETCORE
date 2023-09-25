@@ -1,0 +1,23 @@
+﻿
+
+@if (TempData["success"] != null)
+{
+    
+
+    <script>
+        try {
+            toastr.info('@TempData["success"]');
+        } catch (ex) {
+            console.log(ex.toString());
+        }
+    </script>
+    
+}
+@if (TempData["error"] != null)
+{
+    
+
+    <script>
+        toastr.error('@TempData["error"]');
+    </script>
+}
